@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documents | Study Buddy</title>
+  <meta name="clerk-publishable-key" content="pk_test_ZXhvdGljLWZlcnJldC01OC5jbGVyay5hY2NvdW50cy5kZXYk" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 min-h-screen flex">
+
+<!-- Sidebar -->
+<aside class="w-64 flex-shrink-0 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col h-screen sticky top-0">
+  <div class="p-4 border-b border-slate-200 dark:border-slate-700"><a href="dashboard.html" class="flex items-center gap-2 font-bold text-lg"><span>🎓</span><span class="text-indigo-600 dark:text-indigo-400">Study Buddy</span></a></div>
+  <nav class="flex-1 overflow-y-auto p-3 space-y-1">
+    <a href="dashboard.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Dashboard</a>
+    <a href="documents.html" class="sidebar-link active"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Documents</a>
+    <a href="tutor.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>AI Tutor</a>
+    <a href="flashcards.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>Flashcards</a>
+    <a href="quizzes.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>Quizzes</a>
+    <a href="analytics.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Analytics</a>
+    <a href="settings.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Settings</a>
+  </nav>
+  <div class="p-3 border-t border-slate-200 dark:border-slate-700"><div id="clerk-user-button"></div></div>
+</aside>
+
+<!-- Main -->
+<main class="flex-1 overflow-auto p-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h1 class="text-2xl font-bold">Documents</h1>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-0.5">Upload and manage your study materials.</p>
+      </div>
+      <label for="file-input" class="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-colors cursor-pointer">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+        Upload
+        <input id="file-input" type="file" class="hidden" accept=".pdf,.docx,.txt,.md" />
+      </label>
+    </div>
+
+    <!-- Drop Zone -->
+    <div id="drop-zone" class="drop-zone mb-6">
+      <div class="text-4xl mb-3">📁</div>
+      <p class="text-base font-semibold text-slate-700 dark:text-slate-300">Drag & drop files here</p>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Supports PDF, DOCX, TXT, Markdown — up to 50 MB</p>
+      <div id="upload-progress" class="hidden mt-4">
+        <div class="progress-bar max-w-xs mx-auto">
+          <div class="progress-bar__fill" id="upload-bar" style="width:0%"></div>
+        </div>
+        <p id="upload-status" class="text-xs text-slate-500 mt-2"></p>
+      </div>
+    </div>
+
+    <!-- Document List -->
+    <div id="doc-list" class="space-y-3">
+      <!-- Skeletons -->
+      <div class="skeleton" style="height:80px;border-radius:1rem"></div>
+      <div class="skeleton" style="height:80px;border-radius:1rem"></div>
+      <div class="skeleton" style="height:80px;border-radius:1rem"></div>
+    </div>
+  </div>
+</main>
+
+<script type="module">
+  import { loadClerk, redirectIfNotAuthenticated, mountUserButton } from './assets/js/auth.js';
+  import { api } from './assets/js/api.js';
+  import { showToast, renderEmptyState } from './assets/js/ui.js';
+  import { formatFileSize, formatDate, truncateText } from './assets/js/utils.js';
+
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+  let documents = [];
+
+  (async () => {
+    await loadClerk();
+    await redirectIfNotAuthenticated('./auth/signin.html');
+    await mountUserButton('#clerk-user-button');
+    await loadDocuments();
+  })();
+
+  async function loadDocuments() {
+    try {
+      const resp = await api.get('/documents', { limit: 100 });
+      documents = resp.data || [];
+      renderDocuments();
+    } catch (e) {
+      showToast('Failed to load documents', 'error');
+      document.getElementById('doc-list').innerHTML = '';
+    }
+  }
+
+  function renderDocuments() {
+    const list = document.getElementById('doc-list');
+    if (!documents.length) {
+      renderEmptyState(list, 'No documents yet', 'Upload your first PDF, Word doc, or text file to get started.', 'Upload a file', () => document.getElementById('file-input').click());
+      return;
+    }
+    const statusBadge = (s) => `<span class="badge badge--${s}">${s}</span>`;
+    list.innerHTML = documents.map(doc => `
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 flex items-center gap-4 hover:shadow-md transition-shadow">
+        <div class="text-3xl flex-shrink-0">${mimeIcon(doc.mime_type)}</div>
+        <div class="flex-1 min-w-0">
+          <a href="document.html?id=${doc.id}" class="font-semibold text-slate-800 dark:text-slate-200 hover:text-indigo-600 transition-colors truncate block">${doc.title}</a>
+          <div class="flex items-center gap-3 mt-1 text-xs text-slate-500">
+            <span>${formatFileSize(doc.file_size)}</span>
+            ${doc.page_count ? `<span>${doc.page_count} pages</span>` : ''}
+            <span>${formatDate(doc.created_at)}</span>
+            ${statusBadge(doc.processing_status)}
+          </div>
+        </div>
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <a href="document.html?id=${doc.id}" class="px-3 py-1.5 text-xs font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-lg hover:bg-indigo-100 transition-colors">Open</a>
+          <button onclick="deleteDoc('${doc.id}')" class="px-3 py-1.5 text-xs font-semibold bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-100 transition-colors">Delete</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function mimeIcon(mime) {
+    if (mime.includes('pdf')) return '📕';
+    if (mime.includes('word') || mime.includes('docx')) return '📘';
+    if (mime.includes('markdown')) return '📓';
+    return '📄';
+  }
+
+  window.deleteDoc = async (id) => {
+    if (!confirm('Delete this document? This will also remove related summaries, flashcards, and quizzes.')) return;
+    try {
+      await api.delete(`/documents/${id}`);
+      documents = documents.filter(d => d.id !== id);
+      renderDocuments();
+      showToast('Document deleted', 'success');
+    } catch (e) {
+      showToast(e.message, 'error');
+    }
+  };
+
+  // File input handler
+  document.getElementById('file-input').addEventListener('change', (e) => {
+    if (e.target.files[0]) uploadFile(e.target.files[0]);
+  });
+
+  // Drag & drop
+  const dropZone = document.getElementById('drop-zone');
+  dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) uploadFile(file);
+  });
+
+  async function uploadFile(file) {
+    const progressEl = document.getElementById('upload-progress');
+    const barEl = document.getElementById('upload-bar');
+    const statusEl = document.getElementById('upload-status');
+
+    progressEl.classList.remove('hidden');
+    statusEl.textContent = `Uploading ${file.name}…`;
+    barEl.style.width = '30%';
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('title', file.name.replace(/\.[^.]+$/, ''));
+
+    try {
+      barEl.style.width = '70%';
+      const resp = await api.upload('/documents', formData);
+      barEl.style.width = '100%';
+      statusEl.textContent = 'Upload complete!';
+      showToast(`"${resp.data.title}" uploaded successfully`, 'success');
+      await loadDocuments();
+    } catch (e) {
+      showToast(e.message, 'error');
+      statusEl.textContent = 'Upload failed.';
+    } finally {
+      setTimeout(() => progressEl.classList.add('hidden'), 2000);
+    }
+  }
+</script>
+</body>
+</html>

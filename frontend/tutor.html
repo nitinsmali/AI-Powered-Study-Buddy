@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Tutor | Study Buddy</title>
+  <meta name="clerk-publishable-key" content="pk_test_ZXhvdGljLWZlcnJldC01OC5jbGVyay5hY2NvdW50cy5kZXYk" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 min-h-screen flex">
+
+<!-- ── Sidebar (shared) ─────────────────────────────────────────────────────── -->
+<aside class="w-64 flex-shrink-0 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col h-screen sticky top-0">
+  <div class="p-4 border-b border-slate-200 dark:border-slate-700">
+    <a href="dashboard.html" class="flex items-center gap-2 font-bold text-lg">
+      <span>🎓</span><span class="text-indigo-600 dark:text-indigo-400">Study Buddy</span>
+    </a>
+  </div>
+  <nav class="flex-1 overflow-y-auto p-3 space-y-1">
+    <a href="dashboard.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Dashboard</a>
+    <a href="documents.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Documents</a>
+    <a href="tutor.html" class="sidebar-link active"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>AI Tutor</a>
+    <a href="flashcards.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>Flashcards</a>
+    <a href="quizzes.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>Quizzes</a>
+    <a href="analytics.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Analytics</a>
+    <a href="settings.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Settings</a>
+  </nav>
+  <div class="p-3 border-t border-slate-200 dark:border-slate-700">
+    <div id="clerk-user-button"></div>
+  </div>
+</aside>
+
+<!-- ── Chat Area ─────────────────────────────────────────────────────────────── -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden">
+  <!-- Top bar: mode + document selector -->
+  <div class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-6 py-3 flex flex-wrap items-center gap-4">
+    <div>
+      <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide block mb-1">Mode</label>
+      <select id="mode-select" class="text-sm bg-slate-100 dark:bg-slate-700 border-0 rounded-lg px-3 py-1.5 font-medium text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-indigo-500">
+        <option value="explain">💡 Explain</option>
+        <option value="deep_dive">🔬 Deep Dive</option>
+        <option value="quiz_me">📝 Quiz Me</option>
+        <option value="socratic">💬 Socratic</option>
+        <option value="exam_prep">🎯 Exam Prep</option>
+        <option value="summarize">📋 Summarize</option>
+      </select>
+    </div>
+    <div>
+      <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide block mb-1">Document Context</label>
+      <select id="document-select" class="text-sm bg-slate-100 dark:bg-slate-700 border-0 rounded-lg px-3 py-1.5 font-medium text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-indigo-500">
+        <option value="">No document (general mode)</option>
+      </select>
+    </div>
+    <button id="clear-chat" class="ml-auto text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 flex items-center gap-1 transition-colors">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+      Clear chat
+    </button>
+  </div>
+
+  <!-- Messages -->
+  <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-4">
+    <!-- Welcome message -->
+    <div class="flex gap-3">
+      <div class="w-8 h-8 flex-shrink-0 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm">🤖</div>
+      <div class="message-bubble message-bubble--ai prose-ai">
+        <strong>Hello! I'm your AI Study Buddy.</strong><br /><br />
+        I'm here to help you learn. You can ask me to explain a concept, quiz you on a topic, dive deep into a subject, or help you prepare for exams.<br /><br />
+        Select a <strong>mode</strong> above to get started, or just type your question below. If you upload a document, I can answer questions specifically about it!
+      </div>
+    </div>
+  </div>
+
+  <!-- Input area -->
+  <div class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 p-4">
+    <div class="max-w-4xl mx-auto flex items-end gap-3">
+      <div class="flex-1 relative">
+        <textarea
+          id="chat-input"
+          placeholder="Ask me anything… (Shift+Enter for newline)"
+          rows="1"
+          class="w-full resize-none bg-slate-100 dark:bg-slate-700 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 border-0 focus:ring-2 focus:ring-indigo-500 max-h-32 overflow-y-auto"
+        ></textarea>
+      </div>
+      <button id="send-btn"
+        class="flex-shrink-0 w-11 h-11 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 dark:disabled:bg-slate-600 text-white rounded-xl flex items-center justify-center transition-colors"
+        title="Send (Enter)">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+      </button>
+    </div>
+    <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-2">AI can make mistakes. Verify important information.</p>
+  </div>
+</main>
+
+<script type="module">
+  import { loadClerk, redirectIfNotAuthenticated, mountUserButton } from './assets/js/auth.js';
+  import { api } from './assets/js/api.js';
+  import { showToast } from './assets/js/ui.js';
+  import { simpleMarkdownToHtml } from './assets/js/utils.js';
+
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+  const messagesEl = document.getElementById('chat-messages');
+  const inputEl = document.getElementById('chat-input');
+  const sendBtn = document.getElementById('send-btn');
+  const modeSelect = document.getElementById('mode-select');
+  const docSelect = document.getElementById('document-select');
+
+  let conversationHistory = [];
+  let isStreaming = false;
+  let abortFn = null;
+
+  (async () => {
+    await loadClerk();
+    await redirectIfNotAuthenticated('./auth/signin.html');
+    await mountUserButton('#clerk-user-button');
+
+    // Load documents for context selector
+    try {
+      const resp = await api.get('/documents');
+      resp.data.forEach(doc => {
+        const opt = document.createElement('option');
+        opt.value = doc.id;
+        opt.textContent = doc.title;
+        if (doc.processing_status !== 'ready') {
+          opt.textContent += ` (${doc.processing_status})`;
+          opt.disabled = true;
+        }
+        docSelect.appendChild(opt);
+      });
+    } catch (e) { console.warn('Could not load documents:', e); }
+  })();
+
+  // Auto-resize textarea
+  inputEl.addEventListener('input', () => {
+    inputEl.style.height = 'auto';
+    inputEl.style.height = Math.min(inputEl.scrollHeight, 128) + 'px';
+  });
+
+  // Send on Enter (not Shift+Enter)
+  inputEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+  sendBtn.addEventListener('click', sendMessage);
+
+  document.getElementById('clear-chat').addEventListener('click', () => {
+    conversationHistory = [];
+    messagesEl.innerHTML = '';
+    showToast('Chat cleared', 'info');
+  });
+
+  async function sendMessage() {
+    const text = inputEl.value.trim();
+    if (!text || isStreaming) return;
+
+    appendMessage('user', text);
+    conversationHistory.push({ role: 'user', content: text });
+    inputEl.value = '';
+    inputEl.style.height = 'auto';
+
+    const aiMsgEl = appendMessage('ai', '');
+    aiMsgEl.classList.add('streaming-cursor');
+    sendBtn.disabled = true;
+    isStreaming = true;
+
+    let full = '';
+
+    abortFn = await api.stream(
+      '/tutor/chat',
+      {
+        message: text,
+        mode: modeSelect.value,
+        document_id: docSelect.value || null,
+        conversation_history: conversationHistory.slice(-10),
+      },
+      (chunk) => {
+        full += chunk;
+        aiMsgEl.innerHTML = simpleMarkdownToHtml(full);
+        aiMsgEl.classList.add('streaming-cursor');
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      },
+      () => {
+        aiMsgEl.classList.remove('streaming-cursor');
+        conversationHistory.push({ role: 'assistant', content: full });
+        sendBtn.disabled = false;
+        isStreaming = false;
+      },
+      (err) => {
+        aiMsgEl.textContent = `Error: ${err.message}`;
+        aiMsgEl.classList.remove('streaming-cursor');
+        sendBtn.disabled = false;
+        isStreaming = false;
+        showToast(err.message, 'error');
+      }
+    );
+  }
+
+  function appendMessage(role, content) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'flex gap-3' + (role === 'user' ? ' justify-end' : '');
+
+    const icon = role === 'ai' ? '<div class="w-8 h-8 flex-shrink-0 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm">🤖</div>' : '';
+    const bubble = document.createElement('div');
+    bubble.className = `message-bubble message-bubble--${role === 'user' ? 'user' : 'ai'} prose-ai`;
+    bubble.innerHTML = content ? simpleMarkdownToHtml(content) : '';
+
+    wrapper.innerHTML = icon;
+    wrapper.appendChild(bubble);
+    messagesEl.appendChild(wrapper);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return bubble;
+  }
+</script>
+</body>
+</html>

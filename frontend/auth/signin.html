@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In | Study Buddy</title>
+  <meta name="clerk-publishable-key" content="pk_test_ZXhvdGljLWZlcnJldC01OC5jbGVyay5hY2NvdW50cy5kZXYk" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <style>
+    .gradient-text {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-md">
+    <!-- Logo -->
+    <div class="text-center mb-8">
+      <a href="../index.html" class="inline-flex items-center gap-2 text-xl font-bold">
+        <span class="text-3xl">🎓</span>
+        <span class="gradient-text">Study Buddy</span>
+      </a>
+      <p class="mt-2 text-slate-500 dark:text-slate-400 text-sm">Sign in to continue studying smarter</p>
+    </div>
+
+    <!-- Clerk mounts here -->
+    <div id="clerk-sign-in" class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 p-6 min-h-64 flex items-center justify-center">
+      <div class="spinner spinner--lg"></div>
+    </div>
+
+    <p class="text-center mt-6 text-sm text-slate-500">
+      Don't have an account?
+      <a href="signup.html" class="text-indigo-600 font-medium hover:underline">Create one free</a>
+    </p>
+  </div>
+
+  <script type="module">
+    import { loadClerk, redirectIfAuthenticated, syncUserWithBackend } from '../assets/js/auth.js';
+    import { showToast } from '../assets/js/ui.js';
+
+    (async () => {
+      // Restore dark mode
+      if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+      const clerk = await loadClerk();
+      await redirectIfAuthenticated('../dashboard.html');
+
+      clerk.mountSignIn(document.getElementById('clerk-sign-in'), {
+        afterSignInUrl: '../dashboard.html',
+        appearance: {
+          elements: {
+            rootBox: 'w-full',
+            card: 'shadow-none border-0 p-0',
+          },
+        },
+      });
+
+      // After sign-in, sync to backend
+      clerk.addListener(async ({ user }) => {
+        if (user) {
+          try {
+            await syncUserWithBackend();
+          } catch (e) {
+            console.warn('Backend sync failed:', e);
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

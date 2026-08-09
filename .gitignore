@@ -1,0 +1,49 @@
+# Secrets & environment
+.env
+.env.local
+.env.*.local
+*.secret
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+.tox/
+.coverage
+.coverage.*
+.cache
+htmlcov/
+coverage.xml
+*.log
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Pytest
+.pytest_cache/
+
+# Uploaded files (user data)
+uploads/
+backend/uploads/
+
+# IDEs
+.vscode/settings.json
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Alembic compiled
+alembic/versions/__pycache__/

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Study Buddy</title>
+  <meta name="clerk-publishable-key" content="pk_test_ZXhvdGljLWZlcnJldC01OC5jbGVyay5hY2NvdW50cy5kZXYk" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 min-h-screen flex">
+
+<!-- ── Sidebar ──────────────────────────────────────────────────────────────── -->
+<aside id="sidebar" class="w-64 flex-shrink-0 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col h-screen sticky top-0">
+  <!-- Logo -->
+  <div class="p-4 border-b border-slate-200 dark:border-slate-700">
+    <a href="dashboard.html" class="flex items-center gap-2 font-bold text-lg">
+      <span>🎓</span>
+      <span class="text-indigo-600 dark:text-indigo-400">Study Buddy</span>
+    </a>
+  </div>
+
+  <!-- Nav -->
+  <nav class="flex-1 overflow-y-auto p-3 space-y-1">
+    <a href="dashboard.html" class="sidebar-link active">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      Dashboard
+    </a>
+    <a href="documents.html" class="sidebar-link">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      Documents
+    </a>
+    <a href="tutor.html" class="sidebar-link">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+      AI Tutor
+    </a>
+    <a href="flashcards.html" class="sidebar-link">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+      Flashcards
+    </a>
+    <a href="quizzes.html" class="sidebar-link">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+      Quizzes
+    </a>
+    <a href="analytics.html" class="sidebar-link">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      Analytics
+    </a>
+    <a href="settings.html" class="sidebar-link">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      Settings
+    </a>
+  </nav>
+
+  <!-- User -->
+  <div class="p-3 border-t border-slate-200 dark:border-slate-700">
+    <div id="user-menu" class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer transition-colors">
+      <div id="user-avatar" class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-bold skeleton"></div>
+      <div class="flex-1 min-w-0">
+        <div id="user-name" class="text-sm font-medium truncate skeleton skeleton-text skeleton-text--medium"></div>
+      </div>
+    </div>
+    <div id="clerk-user-button" class="mt-2"></div>
+  </div>
+</aside>
+
+<!-- ── Main Content ──────────────────────────────────────────────────────────── -->
+<main class="flex-1 overflow-auto">
+  <div class="max-w-6xl mx-auto px-6 py-8">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900 dark:text-white">
+          Good morning, <span id="greeting-name" class="text-indigo-600">Student</span> 👋
+        </h1>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-0.5">Here's your study overview for today.</p>
+      </div>
+      <a href="documents.html" class="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-colors">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+        Upload Document
+      </a>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
+        <div class="text-3xl font-black text-indigo-600" id="stat-study-time">—</div>
+        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Study time today</div>
+      </div>
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
+        <div class="text-3xl font-black text-purple-600" id="stat-quizzes">—</div>
+        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Quizzes taken</div>
+      </div>
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
+        <div class="text-3xl font-black text-cyan-600" id="stat-flashcards">—</div>
+        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Cards reviewed</div>
+      </div>
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
+        <div class="text-3xl font-black text-green-600" id="stat-documents">—</div>
+        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Documents</div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Progress / Topics -->
+      <div class="lg:col-span-2 space-y-6">
+        <!-- Weak Topics -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
+          <h2 class="text-base font-bold mb-4 flex items-center gap-2">
+            <span class="text-lg">⚠️</span> Topics to work on
+          </h2>
+          <div id="weak-topics-list">
+            <div class="skeleton skeleton-text mb-3" style="height:48px"></div>
+            <div class="skeleton skeleton-text mb-3" style="height:48px"></div>
+            <div class="skeleton skeleton-text" style="height:48px"></div>
+          </div>
+        </div>
+
+        <!-- Strong Topics -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
+          <h2 class="text-base font-bold mb-4 flex items-center gap-2">
+            <span class="text-lg">🏆</span> Strong topics
+          </h2>
+          <div id="strong-topics-list">
+            <div class="skeleton skeleton-text mb-3" style="height:48px"></div>
+            <div class="skeleton skeleton-text" style="height:48px"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar widgets -->
+      <div class="space-y-6">
+        <!-- Study Streak -->
+        <div class="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl p-6 text-white">
+          <div class="text-sm font-medium opacity-75 mb-1">Current streak 🔥</div>
+          <div class="text-4xl font-black" id="streak-count">—</div>
+          <div class="text-sm opacity-75 mt-1">days in a row</div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
+          <h2 class="text-base font-bold mb-4">✨ Recommended</h2>
+          <div id="recommendations-list" class="space-y-3">
+            <div class="skeleton skeleton-text" style="height:60px"></div>
+            <div class="skeleton skeleton-text" style="height:60px"></div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
+          <h2 class="text-base font-bold mb-4">⏱ Recent activity</h2>
+          <div id="recent-activity-list" class="space-y-2 text-sm text-slate-500">
+            <div class="skeleton skeleton-text skeleton-text--long"></div>
+            <div class="skeleton skeleton-text skeleton-text--medium"></div>
+            <div class="skeleton skeleton-text skeleton-text--short"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script type="module">
+  import { loadClerk, redirectIfNotAuthenticated, mountUserButton } from './assets/js/auth.js';
+  import { api } from './assets/js/api.js';
+  import { formatDuration, formatDate, formatPercentage } from './assets/js/utils.js';
+  import { showToast } from './assets/js/ui.js';
+
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+  (async () => {
+    await loadClerk();
+    await redirectIfNotAuthenticated('./auth/signin.html');
+    await mountUserButton('#clerk-user-button');
+
+    const user = window.Clerk?.user;
+    if (user) {
+      const name = user.firstName || user.fullName || 'Student';
+      document.getElementById('greeting-name').textContent = name;
+      document.getElementById('user-name').textContent = name;
+      document.getElementById('user-name').className = 'text-sm font-medium truncate';
+      const avatarEl = document.getElementById('user-avatar');
+      avatarEl.className = 'w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-bold';
+      if (user.imageUrl) {
+        avatarEl.innerHTML = `<img src="${user.imageUrl}" class="w-full h-full rounded-full object-cover" alt="" />`;
+      } else {
+        avatarEl.textContent = name.charAt(0).toUpperCase();
+      }
+    }
+
+    // Load analytics
+    try {
+      const resp = await api.get('/analytics/summary');
+      const data = resp.data;
+
+      document.getElementById('stat-study-time').textContent = formatDuration(data.total_study_time_seconds);
+      document.getElementById('stat-quizzes').textContent = data.total_quizzes_taken;
+      document.getElementById('stat-flashcards').textContent = data.total_flashcards_reviewed;
+      document.getElementById('stat-documents').textContent = data.total_documents;
+      document.getElementById('streak-count').textContent = data.study_streak?.current_streak_days || 0;
+
+      renderTopics('weak-topics-list', data.weak_topics, false);
+      renderTopics('strong-topics-list', data.strong_topics, true);
+      renderActivity(data.recent_activity);
+    } catch (e) {
+      console.warn('Analytics load error:', e);
+    }
+
+    // Load recommendations
+    try {
+      const recs = await api.get('/learning/recommendations');
+      renderRecommendations(recs.data);
+    } catch (e) { /* silently skip */ }
+  })();
+
+  function renderTopics(containerId, topics, isStrong) {
+    const el = document.getElementById(containerId);
+    if (!topics?.length) {
+      el.innerHTML = `<p class="text-sm text-slate-400 dark:text-slate-500">No data yet — start studying!</p>`;
+      return;
+    }
+    el.innerHTML = topics.map(t => `
+      <div class="flex items-center justify-between py-2">
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300 truncate">${t.topic_name}</span>
+        <div class="flex items-center gap-3 ml-3 flex-shrink-0">
+          <div class="w-24 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div class="h-full rounded-full ${isStrong ? 'bg-green-500' : 'bg-amber-500'}" style="width:${t.mastery_score}%"></div>
+          </div>
+          <span class="text-xs font-semibold text-slate-500 w-10 text-right">${Math.round(t.mastery_score)}%</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderRecommendations(recs) {
+    const el = document.getElementById('recommendations-list');
+    if (!recs?.length) {
+      el.innerHTML = `<p class="text-sm text-slate-400">Keep studying to get personalized tips!</p>`;
+      return;
+    }
+    el.innerHTML = recs.slice(0, 3).map(r => `
+      <a href="${r.item.action_url}" class="block p-3 rounded-xl bg-slate-50 dark:bg-slate-700/50 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors">
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-200">${r.item.title}</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${r.item.description}</div>
+      </a>
+    `).join('');
+  }
+
+  function renderActivity(activity) {
+    const el = document.getElementById('recent-activity-list');
+    if (!activity?.length) {
+      el.innerHTML = `<p class="text-slate-400">No recent activity.</p>`;
+      return;
+    }
+    const icons = { quiz: '📝', flashcard_review: '🃏', tutor_chat: '🤖', document_read: '📄', summary_generated: '📋', general: '⏱' };
+    el.innerHTML = activity.slice(0, 5).map(a => `
+      <div class="flex items-center gap-2">
+        <span>${icons[a.activity_type] || '⏱'}</span>
+        <span class="capitalize">${a.activity_type.replace('_', ' ')}</span>
+        <span class="ml-auto text-xs">${formatDate(a.started_at)}</span>
+      </div>
+    `).join('');
+  }
+</script>
+</body>
+</html>

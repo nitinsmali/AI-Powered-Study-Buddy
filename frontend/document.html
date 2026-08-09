@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document | Study Buddy</title>
+  <meta name="clerk-publishable-key" content="pk_test_ZXhvdGljLWZlcnJldC01OC5jbGVyay5hY2NvdW50cy5kZXYk" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 min-h-screen flex">
+
+<!-- Sidebar -->
+<aside class="w-64 flex-shrink-0 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col h-screen sticky top-0">
+  <div class="p-4 border-b border-slate-200 dark:border-slate-700"><a href="dashboard.html" class="flex items-center gap-2 font-bold text-lg"><span>🎓</span><span class="text-indigo-600 dark:text-indigo-400">Study Buddy</span></a></div>
+  <nav class="flex-1 overflow-y-auto p-3 space-y-1">
+    <a href="dashboard.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Dashboard</a>
+    <a href="documents.html" class="sidebar-link active"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Documents</a>
+    <a href="tutor.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>AI Tutor</a>
+    <a href="flashcards.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>Flashcards</a>
+    <a href="quizzes.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>Quizzes</a>
+    <a href="analytics.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Analytics</a>
+    <a href="settings.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Settings</a>
+  </nav>
+  <div class="p-3 border-t border-slate-200 dark:border-slate-700"><div id="clerk-user-button"></div></div>
+</aside>
+
+<!-- Main -->
+<main class="flex-1 overflow-auto p-6">
+  <div class="max-w-4xl mx-auto">
+    <!-- Back link -->
+    <a href="documents.html" class="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-indigo-600 transition-colors mb-6">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      Back to Documents
+    </a>
+
+    <!-- Document header -->
+    <div id="doc-header" class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 mb-6">
+      <div class="flex items-start gap-4">
+        <div id="doc-icon" class="text-5xl flex-shrink-0">📄</div>
+        <div class="flex-1 min-w-0">
+          <h1 id="doc-title" class="text-xl font-bold text-slate-900 dark:text-white skeleton skeleton-text skeleton-text--long" style="height:1.75rem"></h1>
+          <div id="doc-meta" class="flex flex-wrap gap-3 mt-2 text-sm text-slate-500 skeleton skeleton-text skeleton-text--medium" style="height:1.25rem;margin-top:0.5rem"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+      <!-- Summarize -->
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
+        <div class="text-2xl mb-3">📋</div>
+        <h2 class="font-bold text-sm mb-1">Summarize</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Generate an AI summary in your preferred style.</p>
+        <select id="summary-type" class="w-full text-xs bg-slate-100 dark:bg-slate-700 border-0 rounded-lg px-2.5 py-1.5 mb-2">
+          <option value="quick">Quick Overview</option>
+          <option value="detailed">Detailed</option>
+          <option value="bullet_points">Bullet Points</option>
+          <option value="exam_revision">Exam Revision</option>
+          <option value="simple_explanation">Simple Explanation</option>
+        </select>
+        <button id="summarize-btn" class="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold rounded-lg transition-colors disabled:opacity-50">Generate Summary</button>
+      </div>
+
+      <!-- Flashcards -->
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
+        <div class="text-2xl mb-3">🃏</div>
+        <h2 class="font-bold text-sm mb-1">Flashcards</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Auto-generate study cards with spaced repetition.</p>
+        <select id="card-count" class="w-full text-xs bg-slate-100 dark:bg-slate-700 border-0 rounded-lg px-2.5 py-1.5 mb-2">
+          <option value="10">10 cards</option>
+          <option value="15" selected>15 cards</option>
+          <option value="20">20 cards</option>
+          <option value="30">30 cards</option>
+        </select>
+        <button id="flashcard-btn" class="w-full py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-semibold rounded-lg transition-colors disabled:opacity-50">Generate Flashcards</button>
+      </div>
+
+      <!-- Quiz -->
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
+        <div class="text-2xl mb-3">📝</div>
+        <h2 class="font-bold text-sm mb-1">Quiz</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Generate a multiple-choice quiz to test yourself.</p>
+        <select id="quiz-difficulty" class="w-full text-xs bg-slate-100 dark:bg-slate-700 border-0 rounded-lg px-2.5 py-1.5 mb-2">
+          <option value="mixed">Mixed difficulty</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <button id="quiz-btn" class="w-full py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-lg transition-colors disabled:opacity-50">Generate Quiz</button>
+      </div>
+    </div>
+
+    <!-- Tutor context shortcut -->
+    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-2xl p-4 mb-6 flex items-center gap-4">
+      <span class="text-2xl">🤖</span>
+      <div class="flex-1">
+        <p class="text-sm font-semibold text-indigo-800 dark:text-indigo-200">Ask the AI Tutor about this document</p>
+        <p class="text-xs text-indigo-600 dark:text-indigo-400">The tutor will use this document as context for your questions.</p>
+      </div>
+      <a id="tutor-link" href="tutor.html" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors flex-shrink-0">Open Tutor →</a>
+    </div>
+
+    <!-- Result area (summaries, status messages) -->
+    <div id="result-area" class="hidden bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
+      <div class="flex items-center justify-between mb-4">
+        <h2 id="result-title" class="font-bold text-base"></h2>
+        <button id="result-close" class="text-slate-400 hover:text-slate-600 text-xl leading-none">×</button>
+      </div>
+      <div id="result-content" class="prose-ai text-sm"></div>
+    </div>
+  </div>
+</main>
+
+<script type="module">
+  import { loadClerk, redirectIfNotAuthenticated, mountUserButton } from './assets/js/auth.js';
+  import { api } from './assets/js/api.js';
+  import { showToast, showLoading, hideLoading } from './assets/js/ui.js';
+  import { formatFileSize, formatDate } from './assets/js/utils.js';
+  import { simpleMarkdownToHtml } from './assets/js/utils.js';
+
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+  const params = new URLSearchParams(window.location.search);
+  const docId = params.get('id');
+
+  if (!docId) { window.location.href = 'documents.html'; }
+
+  let doc = null;
+
+  (async () => {
+    await loadClerk();
+    await redirectIfNotAuthenticated('./auth/signin.html');
+    await mountUserButton('#clerk-user-button');
+
+    try {
+      const resp = await api.get(`/documents/${docId}`);
+      doc = resp.data;
+      renderDoc();
+    } catch (e) {
+      showToast('Document not found', 'error');
+      window.location.href = 'documents.html';
+    }
+  })();
+
+  function renderDoc() {
+    const mimeIcon = (m) => m.includes('pdf') ? '📕' : m.includes('word') ? '📘' : '📄';
+    document.getElementById('doc-icon').textContent = mimeIcon(doc.mime_type);
+
+    const titleEl = document.getElementById('doc-title');
+    titleEl.textContent = doc.title;
+    titleEl.className = 'text-xl font-bold text-slate-900 dark:text-white';
+
+    const metaEl = document.getElementById('doc-meta');
+    metaEl.className = 'flex flex-wrap gap-3 mt-2 text-sm text-slate-500';
+    metaEl.innerHTML = `
+      <span>${formatFileSize(doc.file_size)}</span>
+      ${doc.page_count ? `<span>${doc.page_count} pages</span>` : ''}
+      <span>Uploaded ${formatDate(doc.created_at)}</span>
+      <span class="badge badge--${doc.processing_status}">${doc.processing_status}</span>
+    `;
+
+    document.title = `${doc.title} | Study Buddy`;
+
+    // Update tutor link with document context
+    document.getElementById('tutor-link').href = `tutor.html?doc=${docId}`;
+
+    const isReady = doc.processing_status === 'ready';
+    ['summarize-btn', 'flashcard-btn', 'quiz-btn'].forEach(id => {
+      const btn = document.getElementById(id);
+      btn.disabled = !isReady;
+      if (!isReady) btn.title = `Document status: ${doc.processing_status}. Wait for "ready".`;
+    });
+  }
+
+  // Summarize
+  document.getElementById('summarize-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('summarize-btn');
+    const type = document.getElementById('summary-type').value;
+    showLoading(btn, 'Generating…');
+    try {
+      const resp = await api.post('/summaries', { document_id: docId, summary_type: type });
+      showResult('Summary — ' + type.replace('_', ' '), resp.data.content);
+      showToast('Summary generated!', 'success');
+    } catch (e) {
+      showToast(e.message, 'error');
+    } finally {
+      hideLoading(btn);
+    }
+  });
+
+  // Flashcards
+  document.getElementById('flashcard-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('flashcard-btn');
+    const count = parseInt(document.getElementById('card-count').value);
+    showLoading(btn, 'Generating…');
+    try {
+      const resp = await api.post('/flashcards/generate', { document_id: docId, card_count: count });
+      showToast(`${resp.total} flashcards generated!`, 'success');
+      setTimeout(() => window.location.href = 'flashcards.html', 1000);
+    } catch (e) {
+      showToast(e.message, 'error');
+    } finally {
+      hideLoading(btn);
+    }
+  });
+
+  // Quiz
+  document.getElementById('quiz-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('quiz-btn');
+    const difficulty = document.getElementById('quiz-difficulty').value;
+    showLoading(btn, 'Generating…');
+    try {
+      const resp = await api.post('/quizzes/generate', { document_id: docId, difficulty, question_count: 10 });
+      showToast(`Quiz "${resp.data.title}" created!`, 'success');
+      setTimeout(() => window.location.href = `quizzes.html?id=${resp.data.id}`, 1000);
+    } catch (e) {
+      showToast(e.message, 'error');
+    } finally {
+      hideLoading(btn);
+    }
+  });
+
+  document.getElementById('result-close').addEventListener('click', () => {
+    document.getElementById('result-area').classList.add('hidden');
+  });
+
+  function showResult(title, content) {
+    const area = document.getElementById('result-area');
+    document.getElementById('result-title').textContent = title;
+    document.getElementById('result-content').innerHTML = simpleMarkdownToHtml(content);
+    area.classList.remove('hidden');
+    area.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flashcards | Study Buddy</title>
+  <meta name="clerk-publishable-key" content="pk_test_ZXhvdGljLWZlcnJldC01OC5jbGVyay5hY2NvdW50cy5kZXYk" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 min-h-screen flex">
+
+<!-- Sidebar -->
+<aside class="w-64 flex-shrink-0 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col h-screen sticky top-0">
+  <div class="p-4 border-b border-slate-200 dark:border-slate-700"><a href="dashboard.html" class="flex items-center gap-2 font-bold text-lg"><span>🎓</span><span class="text-indigo-600 dark:text-indigo-400">Study Buddy</span></a></div>
+  <nav class="flex-1 overflow-y-auto p-3 space-y-1">
+    <a href="dashboard.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Dashboard</a>
+    <a href="documents.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Documents</a>
+    <a href="tutor.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>AI Tutor</a>
+    <a href="flashcards.html" class="sidebar-link active"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>Flashcards</a>
+    <a href="quizzes.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>Quizzes</a>
+    <a href="analytics.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Analytics</a>
+    <a href="settings.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Settings</a>
+  </nav>
+  <div class="p-3 border-t border-slate-200 dark:border-slate-700"><div id="clerk-user-button"></div></div>
+</aside>
+
+<!-- Main -->
+<main class="flex-1 overflow-auto p-6">
+  <div class="max-w-3xl mx-auto">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h1 class="text-2xl font-bold">Flashcards</h1>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-0.5">Study with spaced repetition.</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <label class="text-xs text-slate-500 font-medium">Due only</label>
+        <input type="checkbox" id="due-only-toggle" class="rounded" />
+      </div>
+    </div>
+
+    <!-- Study mode: card viewer -->
+    <div id="study-mode" class="hidden mb-8">
+      <!-- Progress -->
+      <div class="flex items-center justify-between text-sm text-slate-500 mb-3">
+        <span id="card-progress">Card 1 of 1</span>
+        <button id="exit-study" class="text-xs text-slate-400 hover:text-red-500 transition-colors">✕ Exit study mode</button>
+      </div>
+      <div class="progress-bar mb-6">
+        <div class="progress-bar__fill" id="study-progress-bar" style="width:0%"></div>
+      </div>
+
+      <!-- Flashcard -->
+      <div class="flashcard-scene" id="card-scene" title="Click to flip">
+        <div class="flashcard-card" id="card-inner">
+          <div class="flashcard-face flashcard-face--front" id="card-front">
+            <p id="card-front-text" class="text-lg font-semibold"></p>
+          </div>
+          <div class="flashcard-face flashcard-face--back">
+            <p id="card-back-text" class="text-base leading-relaxed"></p>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-center text-xs text-slate-400 mt-3 mb-6">Click the card to reveal the answer</p>
+
+      <!-- Rating buttons (shown after flip) -->
+      <div id="rating-buttons" class="hidden flex flex-wrap justify-center gap-3 mt-4">
+        <p class="w-full text-center text-sm font-medium text-slate-600 dark:text-slate-400 mb-1">How well did you know this?</p>
+        <button onclick="rateCard(0)" class="px-4 py-2 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-sm font-semibold rounded-xl hover:bg-red-200 transition-colors">😵 Forgot (0)</button>
+        <button onclick="rateCard(2)" class="px-4 py-2 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-sm font-semibold rounded-xl hover:bg-orange-200 transition-colors">😕 Hard (2)</button>
+        <button onclick="rateCard(3)" class="px-4 py-2 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 text-sm font-semibold rounded-xl hover:bg-yellow-200 transition-colors">😐 OK (3)</button>
+        <button onclick="rateCard(4)" class="px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-sm font-semibold rounded-xl hover:bg-green-200 transition-colors">😊 Easy (4)</button>
+        <button onclick="rateCard(5)" class="px-4 py-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-sm font-semibold rounded-xl hover:bg-emerald-200 transition-colors">🤩 Perfect (5)</button>
+      </div>
+    </div>
+
+    <!-- Generate section -->
+    <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 mb-6 flex flex-wrap items-end gap-3">
+      <div class="flex-1 min-w-40">
+        <label class="text-xs font-semibold text-slate-500 uppercase tracking-wide block mb-1">Document</label>
+        <select id="gen-doc-select" class="w-full text-sm bg-slate-100 dark:bg-slate-700 border-0 rounded-lg px-3 py-2">
+          <option value="">Select a document…</option>
+        </select>
+      </div>
+      <div>
+        <label class="text-xs font-semibold text-slate-500 uppercase tracking-wide block mb-1">Cards</label>
+        <select id="gen-count" class="text-sm bg-slate-100 dark:bg-slate-700 border-0 rounded-lg px-3 py-2">
+          <option value="10">10</option>
+          <option value="15" selected>15</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+        </select>
+      </div>
+      <button id="gen-btn" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold rounded-xl transition-colors disabled:opacity-50">Generate Flashcards</button>
+    </div>
+
+    <!-- Card list -->
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="font-bold text-sm text-slate-600 dark:text-slate-400 uppercase tracking-wide" id="card-list-label">All Cards</h2>
+      <button id="study-btn" class="hidden px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-colors">▶ Study Now</button>
+    </div>
+    <div id="card-list" class="space-y-2">
+      <div class="skeleton" style="height:64px;border-radius:0.75rem"></div>
+      <div class="skeleton" style="height:64px;border-radius:0.75rem"></div>
+      <div class="skeleton" style="height:64px;border-radius:0.75rem"></div>
+    </div>
+  </div>
+</main>
+
+<script type="module">
+  import { loadClerk, redirectIfNotAuthenticated, mountUserButton } from './assets/js/auth.js';
+  import { api } from './assets/js/api.js';
+  import { showToast, showLoading, hideLoading, renderEmptyState } from './assets/js/ui.js';
+  import { truncateText } from './assets/js/utils.js';
+
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+  let allCards = [];
+  let studyQueue = [];
+  let currentIndex = 0;
+  let isFlipped = false;
+
+  (async () => {
+    await loadClerk();
+    await redirectIfNotAuthenticated('./auth/signin.html');
+    await mountUserButton('#clerk-user-button');
+    await Promise.all([loadDocuments(), loadCards()]);
+  })();
+
+  async function loadDocuments() {
+    try {
+      const resp = await api.get('/documents');
+      const select = document.getElementById('gen-doc-select');
+      resp.data.filter(d => d.processing_status === 'ready').forEach(doc => {
+        const opt = document.createElement('option');
+        opt.value = doc.id;
+        opt.textContent = truncateText(doc.title, 40);
+        select.appendChild(opt);
+      });
+    } catch (e) { /* silent */ }
+  }
+
+  async function loadCards() {
+    const dueOnly = document.getElementById('due-only-toggle').checked;
+    try {
+      const resp = await api.get('/flashcards', { due_only: dueOnly, limit: 200 });
+      allCards = resp.data || [];
+      renderCardList();
+    } catch (e) {
+      showToast('Failed to load flashcards', 'error');
+      document.getElementById('card-list').innerHTML = '';
+    }
+  }
+
+  document.getElementById('due-only-toggle').addEventListener('change', loadCards);
+
+  function renderCardList() {
+    const list = document.getElementById('card-list');
+    const studyBtn = document.getElementById('study-btn');
+    const label = document.getElementById('card-list-label');
+    label.textContent = `${allCards.length} card${allCards.length !== 1 ? 's' : ''}`;
+
+    if (!allCards.length) {
+      studyBtn.classList.add('hidden');
+      renderEmptyState(list, 'No flashcards yet', 'Generate flashcards from a document to start studying.');
+      return;
+    }
+
+    studyBtn.classList.remove('hidden');
+    list.innerHTML = allCards.map((c, i) => `
+      <div class="bg-white dark:bg-slate-800 rounded-xl px-4 py-3 border border-slate-200 dark:border-slate-700 flex items-center gap-3">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-slate-800 dark:text-slate-200 truncate">${c.front}</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">${c.back}</p>
+        </div>
+        <span class="text-xs text-slate-400 flex-shrink-0">×${c.repetitions}</span>
+        <button onclick="deleteCard('${c.id}')" class="text-xs text-red-400 hover:text-red-600 flex-shrink-0 transition-colors">✕</button>
+      </div>
+    `).join('');
+  }
+
+  // Generate flashcards
+  document.getElementById('gen-btn').addEventListener('click', async () => {
+    const docId = document.getElementById('gen-doc-select').value;
+    if (!docId) { showToast('Please select a document', 'warning'); return; }
+    const btn = document.getElementById('gen-btn');
+    showLoading(btn, 'Generating…');
+    try {
+      const resp = await api.post('/flashcards/generate', {
+        document_id: docId,
+        card_count: parseInt(document.getElementById('gen-count').value),
+      });
+      showToast(`${resp.total} flashcards generated!`, 'success');
+      await loadCards();
+    } catch (e) {
+      showToast(e.message, 'error');
+    } finally {
+      hideLoading(btn);
+    }
+  });
+
+  // Study mode
+  document.getElementById('study-btn').addEventListener('click', () => {
+    studyQueue = [...allCards];
+    currentIndex = 0;
+    document.getElementById('study-mode').classList.remove('hidden');
+    document.getElementById('study-mode').scrollIntoView({ behavior: 'smooth' });
+    showCard();
+  });
+
+  document.getElementById('exit-study').addEventListener('click', () => {
+    document.getElementById('study-mode').classList.add('hidden');
+    document.getElementById('card-inner').classList.remove('is-flipped');
+    document.getElementById('rating-buttons').classList.add('hidden');
+  });
+
+  document.getElementById('card-scene').addEventListener('click', () => {
+    const inner = document.getElementById('card-inner');
+    isFlipped = !isFlipped;
+    inner.classList.toggle('is-flipped', isFlipped);
+    document.getElementById('rating-buttons').classList.toggle('hidden', !isFlipped);
+  });
+
+  function showCard() {
+    if (currentIndex >= studyQueue.length) {
+      document.getElementById('study-mode').classList.add('hidden');
+      showToast('🎉 Session complete! All cards reviewed.', 'success');
+      loadCards();
+      return;
+    }
+    const card = studyQueue[currentIndex];
+    document.getElementById('card-front-text').textContent = card.front;
+    document.getElementById('card-back-text').textContent = card.back;
+    document.getElementById('card-progress').textContent = `Card ${currentIndex + 1} of ${studyQueue.length}`;
+    const pct = (currentIndex / studyQueue.length) * 100;
+    document.getElementById('study-progress-bar').style.width = pct + '%';
+    document.getElementById('card-inner').classList.remove('is-flipped');
+    document.getElementById('rating-buttons').classList.add('hidden');
+    isFlipped = false;
+  }
+
+  window.rateCard = async (quality) => {
+    const card = studyQueue[currentIndex];
+    try {
+      await api.post(`/flashcards/${card.id}/review`, { quality });
+    } catch (e) { /* non-critical */ }
+    currentIndex++;
+    showCard();
+  };
+
+  window.deleteCard = async (id) => {
+    try {
+      await api.delete(`/flashcards/${id}`);
+      allCards = allCards.filter(c => c.id !== id);
+      renderCardList();
+      showToast('Card deleted', 'success');
+    } catch (e) {
+      showToast(e.message, 'error');
+    }
+  };
+</script>
+</body>
+</html>

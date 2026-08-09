@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics | Study Buddy</title>
+  <meta name="clerk-publishable-key" content="pk_test_ZXhvdGljLWZlcnJldC01OC5jbGVyay5hY2NvdW50cy5kZXYk" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 min-h-screen flex">
+
+<!-- Sidebar -->
+<aside class="w-64 flex-shrink-0 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col h-screen sticky top-0">
+  <div class="p-4 border-b border-slate-200 dark:border-slate-700"><a href="dashboard.html" class="flex items-center gap-2 font-bold text-lg"><span>🎓</span><span class="text-indigo-600 dark:text-indigo-400">Study Buddy</span></a></div>
+  <nav class="flex-1 overflow-y-auto p-3 space-y-1">
+    <a href="dashboard.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Dashboard</a>
+    <a href="documents.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Documents</a>
+    <a href="tutor.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>AI Tutor</a>
+    <a href="flashcards.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>Flashcards</a>
+    <a href="quizzes.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>Quizzes</a>
+    <a href="analytics.html" class="sidebar-link active"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Analytics</a>
+    <a href="settings.html" class="sidebar-link"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Settings</a>
+  </nav>
+  <div class="p-3 border-t border-slate-200 dark:border-slate-700"><div id="clerk-user-button"></div></div>
+</aside>
+
+<!-- Main -->
+<main class="flex-1 overflow-auto p-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="mb-8">
+      <h1 class="text-2xl font-bold">Analytics</h1>
+      <p class="text-slate-500 dark:text-slate-400 text-sm mt-0.5">Track your learning progress and performance.</p>
+    </div>
+
+    <!-- Stats row -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
+        <div class="text-3xl font-black text-indigo-600" id="stat-docs">—</div>
+        <div class="text-sm text-slate-500 mt-1">Documents</div>
+      </div>
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
+        <div class="text-3xl font-black text-green-600" id="stat-quizzes">—</div>
+        <div class="text-sm text-slate-500 mt-1">Quizzes taken</div>
+      </div>
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
+        <div class="text-3xl font-black text-purple-600" id="stat-avg-score">—</div>
+        <div class="text-sm text-slate-500 mt-1">Avg quiz score</div>
+      </div>
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
+        <div class="text-3xl font-black text-cyan-600" id="stat-time">—</div>
+        <div class="text-sm text-slate-500 mt-1">Total study time</div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <!-- Weak topics -->
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
+        <h2 class="font-bold mb-4 flex items-center gap-2"><span>⚠️</span> Topics to improve</h2>
+        <div id="weak-topics" class="space-y-3">
+          <div class="skeleton skeleton-text" style="height:40px"></div>
+          <div class="skeleton skeleton-text" style="height:40px"></div>
+          <div class="skeleton skeleton-text" style="height:40px"></div>
+        </div>
+      </div>
+
+      <!-- Strong topics -->
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
+        <h2 class="font-bold mb-4 flex items-center gap-2"><span>🏆</span> Top topics</h2>
+        <div id="strong-topics" class="space-y-3">
+          <div class="skeleton skeleton-text" style="height:40px"></div>
+          <div class="skeleton skeleton-text" style="height:40px"></div>
+          <div class="skeleton skeleton-text" style="height:40px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Study streak + recent activity -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl p-6 text-white">
+        <p class="text-sm font-medium opacity-75">Current streak 🔥</p>
+        <div class="text-5xl font-black my-2" id="streak-current">—</div>
+        <p class="text-sm opacity-75">days in a row</p>
+        <p class="text-xs opacity-60 mt-3">Longest: <span id="streak-longest">—</span> days</p>
+      </div>
+
+      <div class="lg:col-span-2 bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
+        <h2 class="font-bold mb-4">Recent Activity</h2>
+        <div id="recent-activity" class="space-y-2 text-sm">
+          <div class="skeleton skeleton-text skeleton-text--long"></div>
+          <div class="skeleton skeleton-text skeleton-text--medium"></div>
+          <div class="skeleton skeleton-text skeleton-text--long"></div>
+          <div class="skeleton skeleton-text skeleton-text--short"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script type="module">
+  import { loadClerk, redirectIfNotAuthenticated, mountUserButton } from './assets/js/auth.js';
+  import { api } from './assets/js/api.js';
+  import { showToast } from './assets/js/ui.js';
+  import { formatDuration, formatDate, formatPercentage } from './assets/js/utils.js';
+
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+  (async () => {
+    await loadClerk();
+    await redirectIfNotAuthenticated('./auth/signin.html');
+    await mountUserButton('#clerk-user-button');
+
+    try {
+      const resp = await api.get('/analytics/summary');
+      const d = resp.data;
+
+      document.getElementById('stat-docs').textContent = d.total_documents;
+      document.getElementById('stat-quizzes').textContent = d.total_quizzes_taken;
+      document.getElementById('stat-avg-score').textContent = d.average_quiz_score ? `${Math.round(d.average_quiz_score)}%` : '—';
+      document.getElementById('stat-time').textContent = formatDuration(d.total_study_time_seconds);
+      document.getElementById('streak-current').textContent = d.study_streak?.current_streak_days ?? 0;
+      document.getElementById('streak-longest').textContent = d.study_streak?.longest_streak_days ?? 0;
+
+      renderTopics('weak-topics', d.weak_topics, false);
+      renderTopics('strong-topics', d.strong_topics, true);
+      renderActivity(d.recent_activity);
+    } catch (e) {
+      showToast('Failed to load analytics', 'error');
+    }
+  })();
+
+  function renderTopics(id, topics, strong) {
+    const el = document.getElementById(id);
+    if (!topics?.length) { el.innerHTML = '<p class="text-sm text-slate-400">No data yet.</p>'; return; }
+    el.innerHTML = topics.map(t => `
+      <div class="flex items-center gap-3">
+        <span class="flex-1 text-sm font-medium truncate text-slate-700 dark:text-slate-300">${t.topic_name}</span>
+        <div class="w-24 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden flex-shrink-0">
+          <div class="h-full rounded-full ${strong ? 'bg-green-500' : 'bg-amber-500'}" style="width:${Math.round(t.mastery_score)}%"></div>
+        </div>
+        <span class="text-xs font-semibold text-slate-500 w-10 text-right">${Math.round(t.mastery_score)}%</span>
+      </div>
+    `).join('');
+  }
+
+  function renderActivity(activity) {
+    const el = document.getElementById('recent-activity');
+    if (!activity?.length) { el.innerHTML = '<p class="text-slate-400">No activity recorded yet.</p>'; return; }
+    const icons = { quiz: '📝', flashcard_review: '🃏', tutor_chat: '🤖', document_read: '📄', summary_generated: '📋', general: '⏱' };
+    el.innerHTML = activity.slice(0, 8).map(a => `
+      <div class="flex items-center gap-2 py-1 border-b border-slate-100 dark:border-slate-700 last:border-0">
+        <span>${icons[a.activity_type] || '⏱'}</span>
+        <span class="flex-1 capitalize text-slate-700 dark:text-slate-300">${a.activity_type.replace(/_/g, ' ')}</span>
+        ${a.duration_seconds ? `<span class="text-xs text-slate-400">${formatDuration(a.duration_seconds)}</span>` : ''}
+        <span class="text-xs text-slate-400">${formatDate(a.started_at)}</span>
+      </div>
+    `).join('');
+  }
+</script>
+</body>
+</html>
