@@ -88,7 +88,7 @@ function setupThemeToggle() {
 function setupSignOut() {
   const signOutBtn = document.getElementById('sign-out-btn');
   if (signOutBtn) {
-    signOutBtn.addEventListener('click', () => signOut('/frontend/index.html'));
+    signOutBtn.addEventListener('click', () => signOut('../index.html'));
   }
 }
 

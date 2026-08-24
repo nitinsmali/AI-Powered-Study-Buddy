@@ -2,6 +2,16 @@
  * Clerk Authentication utilities for AI-Powered Study Buddy
  */
 
+function resolveAppUrl(path, fallback = './') {
+  if (!path) return fallback;
+  if (/^https?:\/\//i.test(path) || path.startsWith('//')) return path;
+  try {
+    return new URL(path, window.location.href).toString();
+  } catch {
+    return new URL(fallback, window.location.href).toString();
+  }
+}
+
 const CLERK_PUBLISHABLE_KEY = window.__CLERK_PUBLISHABLE_KEY__
   || document.querySelector('meta[name="clerk-publishable-key"]')?.content
   || '';
@@ -71,23 +81,27 @@ export async function isAuthenticated() {
  * Call this at the top of any protected page.
  * @param {string} [signInUrl='/frontend/auth/signin.html']
  */
-export async function redirectIfNotAuthenticated(signInUrl = '/frontend/auth/signin.html') {
+export async function redirectIfNotAuthenticated(signInUrl = './auth/signin.html') {
   await loadClerk();
   if (!window.Clerk?.user) {
-    const currentPath = encodeURIComponent(window.location.href);
-    window.location.href = `${signInUrl}?redirect_url=${currentPath}`;
+    const target = new URL(resolveAppUrl(signInUrl), window.location.href);
+    target.searchParams.set('redirect_url', window.location.href);
+    window.location.href = target.toString();
   }
 }
 
 /**
  * Redirect to dashboard if the user IS authenticated.
  * Call this on auth pages (sign-in, sign-up).
- * @param {string} [dashboardUrl='/frontend/dashboard.html']
+ * @param {string} [dashboardUrl='./dashboard.html']
  */
-export async function redirectIfAuthenticated(dashboardUrl = '/frontend/dashboard.html') {
+export async function redirectIfAuthenticated(dashboardUrl = './dashboard.html') {
   await loadClerk();
   if (window.Clerk?.user) {
-    window.location.href = dashboardUrl;
+    const params = new URLSearchParams(window.location.search);
+    const redirectUrl = params.get('redirect_url');
+    const target = redirectUrl ? decodeURIComponent(redirectUrl) : resolveAppUrl(dashboardUrl);
+    window.location.href = target;
   }
 }
 
@@ -121,7 +135,7 @@ export async function mountSignIn(elementOrSelector, props = {}) {
     : elementOrSelector;
   if (!el) throw new Error(`Could not find element: ${elementOrSelector}`);
   clerk.mountSignIn(el, {
-    afterSignInUrl: '/frontend/dashboard.html',
+    afterSignInUrl: './dashboard.html',
     ...props,
   });
 }
@@ -138,7 +152,7 @@ export async function mountSignUp(elementOrSelector, props = {}) {
     : elementOrSelector;
   if (!el) throw new Error(`Could not find element: ${elementOrSelector}`);
   clerk.mountSignUp(el, {
-    afterSignUpUrl: '/frontend/dashboard.html',
+    afterSignUpUrl: './dashboard.html',
     ...props,
   });
 }
@@ -158,10 +172,10 @@ export async function mountUserButton(elementOrSelector) {
 
 /**
  * Sign out the current user and redirect.
- * @param {string} [redirectUrl='/frontend/index.html']
+ * @param {string} [redirectUrl='./index.html']
  */
-export async function signOut(redirectUrl = '/frontend/index.html') {
+export async function signOut(redirectUrl = './index.html') {
   const clerk = await loadClerk();
   await clerk.signOut();
-  window.location.href = redirectUrl;
+  window.location.href = resolveAppUrl(redirectUrl, './index.html');
 }

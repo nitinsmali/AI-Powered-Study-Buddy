@@ -32,8 +32,8 @@
     </div>
 
     <p class="text-center mt-6 text-sm text-slate-500">
-      Don't have an account?
-      <a href="signup.html" class="text-indigo-600 font-medium hover:underline">Create one free</a>
+      Need to return home?
+      <a href="../index.html" class="text-indigo-600 font-medium hover:underline">Back to homepage</a>
     </p>
   </div>
 
@@ -45,11 +45,15 @@
       // Restore dark mode
       if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
 
+      const params = new URLSearchParams(window.location.search);
+      const redirectUrl = params.get('redirect_url');
+      const fallbackUrl = '../dashboard.html';
+
       const clerk = await loadClerk();
-      await redirectIfAuthenticated('../dashboard.html');
+      await redirectIfAuthenticated(redirectUrl || fallbackUrl);
 
       clerk.mountSignIn(document.getElementById('clerk-sign-in'), {
-        afterSignInUrl: '../dashboard.html',
+        afterSignInUrl: redirectUrl || fallbackUrl,
         appearance: {
           elements: {
             rootBox: 'w-full',
