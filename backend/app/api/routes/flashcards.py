@@ -242,7 +242,25 @@ async def _call_llm_flashcards(
         )
         raw = resp.choices[0].message.content or "{}"
         parsed = json.loads(raw)
-        return parsed.get("cards", parsed) if isinstance(parsed, dict) else parsed
+        cards = parsed.get("cards", []) if isinstance(parsed, dict) else parsed
+        if not isinstance(cards, list) or not cards:
+            raise ValueError("The AI returned no flashcards.")
+
+        validated: list[dict] = []
+        for card in cards:
+            if not isinstance(card, dict):
+                raise ValueError("The AI returned an invalid flashcard.")
+            front = card.get("front")
+            back = card.get("back")
+            if (
+                not isinstance(front, str)
+                or not front.strip()
+                or not isinstance(back, str)
+                or not back.strip()
+            ):
+                raise ValueError("The AI returned an incomplete flashcard.")
+            validated.append({"front": front.strip(), "back": back.strip()})
+        return validated
     except Exception as exc:
         logger.error("Flashcard LLM error: %s", exc)
         raise AIServiceError(f"Failed to generate flashcards: {exc}") from exc

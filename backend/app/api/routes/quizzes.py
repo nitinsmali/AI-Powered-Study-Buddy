@@ -311,7 +311,36 @@ async def _call_llm_quiz(
         )
         raw = resp.choices[0].message.content or "{}"
         parsed = json.loads(raw)
-        return parsed.get("questions", parsed) if isinstance(parsed, dict) else parsed
+        questions = parsed.get("questions", []) if isinstance(parsed, dict) else parsed
+        if not isinstance(questions, list) or not questions:
+            raise ValueError("The AI returned no quiz questions.")
+
+        validated: list[dict] = []
+        for question in questions:
+            if not isinstance(question, dict):
+                raise ValueError("The AI returned an invalid quiz question.")
+            text = question.get("question")
+            options = question.get("options")
+            answer = question.get("correct_answer")
+            if (
+                not isinstance(text, str)
+                or not text.strip()
+                or not isinstance(options, list)
+                or len(options) < 2
+                or not all(isinstance(option, str) and option.strip() for option in options)
+                or not isinstance(answer, str)
+                or not answer.strip()
+            ):
+                raise ValueError("The AI returned an incomplete quiz question.")
+            validated.append(
+                {
+                    "question": text.strip(),
+                    "options": [option.strip() for option in options],
+                    "correct_answer": answer.strip(),
+                    "explanation": question.get("explanation"),
+                }
+            )
+        return validated
     except Exception as exc:
         logger.error("Quiz LLM error: %s", exc)
         raise AIServiceError(f"Failed to generate quiz: {exc}") from exc

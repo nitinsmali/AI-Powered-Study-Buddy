@@ -134,7 +134,7 @@ async def _stream_tutor_response(
         yield "data: [DONE]\n\n"
     except Exception as exc:
         logger.error("LLM streaming error: %s", exc)
-        yield f"data: [ERROR] {str(exc)}\n\n"
+        yield "data: [ERROR] The AI service is temporarily unavailable.\n\n"
 
 
 def _build_system_prompt(mode: str, document_text: str | None) -> str:
