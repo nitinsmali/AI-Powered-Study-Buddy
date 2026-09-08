@@ -152,27 +152,22 @@ async def _compute_streak(db: AsyncSession, user_id: str) -> StudyStreakResponse
         return StudyStreakResponse(current_streak_days=0, longest_streak_days=0)
 
     today = datetime.now(timezone.utc).date()
-    current = 0
-    longest = 0
-    prev = None
-
-    for day in days:
-        if prev is None:
-            # Must be today or yesterday to count
-            if (today - day).days <= 1:
-                current = 1
-            prev = day
-            longest = current
-            continue
-        if (prev - day).days == 1:
-            current += 1
-            longest = max(longest, current)
+    longest = 1
+    run = 1
+    for newer_day, older_day in zip(days, days[1:]):
+        if (newer_day - older_day).days == 1:
+            run += 1
+            longest = max(longest, run)
         else:
-            # Streak broken; keep counting longest
-            if current > longest:
-                longest = current
-            current = 1
-        prev = day
+            run = 1
+
+    current = 0
+    if (today - days[0]).days in (0, 1):
+        current = 1
+        for newer_day, older_day in zip(days, days[1:]):
+            if (newer_day - older_day).days != 1:
+                break
+            current += 1
 
     return StudyStreakResponse(
         current_streak_days=current,

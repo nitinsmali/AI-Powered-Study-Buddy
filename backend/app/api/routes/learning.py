@@ -59,8 +59,8 @@ async def get_recommendations(
     db: AsyncSession = Depends(get_db),
 ):
     """
-    Returns rule-based recommendations without calling the LLM
-    (Phase 1 stub — Phase 3 will add AI-powered recommendations).
+    Returns deterministic recommendations from the user's weakest topics.
+    This keeps the endpoint useful even when no LLM provider is configured.
     """
     # Find weak topics (mastery < 50)
     progress_result = await db.execute(

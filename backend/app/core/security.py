@@ -6,11 +6,14 @@ import httpx
 from fastapi import Depends, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jose import ExpiredSignatureError, JWTError, jwt
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
 from app.core.exceptions import AuthenticationError, NotFoundError
 from app.core.logging import get_logger
+from app.db.session import get_db
+from app.models.user import User
 
 logger = get_logger(__name__)
 
@@ -108,25 +111,28 @@ async def get_current_user_id(
 
 async def get_current_user(
     clerk_user_id: str = Depends(get_current_user_id),
-    db: AsyncSession = Depends(lambda: None),  # replaced below with real dep
-):
-    """
-    Resolve a Clerk user ID to the local User DB record.
-
-    Import and use ``get_current_user_from_db`` in routes instead; this
-    stub exists so the import graph stays clean.
-    """
-    raise NotImplementedError("Use get_current_user_from_db from app.api.deps")
+    db: AsyncSession = Depends(get_db),
+) -> User:
+    """Resolve an authenticated Clerk user ID to the local database record."""
+    result = await db.execute(
+        select(User).where(User.clerk_user_id == clerk_user_id)
+    )
+    user = result.scalar_one_or_none()
+    if user is None:
+        raise NotFoundError(
+            "User account not found. Please call POST /api/auth/sync first."
+        )
+    return user
 
 
 # ── Full dependency (used in route files) ────────────────────────────────────
 
 async def get_current_user_from_db(
     clerk_user_id: str = Depends(get_current_user_id),
-    db: AsyncSession = Depends(lambda: (_ for _ in ()).throw(RuntimeError("inject db"))),
-):
-    """Placeholder — real implementation wired in app.api.deps."""
-    raise NotImplementedError
+    db: AsyncSession = Depends(get_db),
+) -> User:
+    """Backward-compatible alias for the database-backed user dependency."""
+    return await get_current_user(clerk_user_id=clerk_user_id, db=db)
 
 
 def require_auth(request: Request) -> str:

@@ -3,7 +3,7 @@ from __future__ import annotations
 from functools import lru_cache
 from typing import List, Optional
 
-from pydantic import field_validator
+from pydantic import AliasChoices, Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -33,9 +33,12 @@ class Settings(BaseSettings):
     # ── CORS ──────────────────────────────────────────────────────────────────
     # Stored as a plain string so pydantic_settings never tries JSON-parsing.
     # Use the `cors_origins_list` property wherever a list is needed.
-    CORS_ORIGINS_STR: str = (
-        "http://localhost:3000,http://localhost:5500,"
-        "http://127.0.0.1:5500,http://localhost:8080,null"
+    CORS_ORIGINS_STR: str = Field(
+        default=(
+            "http://localhost:3000,http://localhost:5500,"
+            "http://127.0.0.1:5500,http://localhost:8080"
+        ),
+        validation_alias=AliasChoices("CORS_ORIGINS_STR", "CORS_ORIGINS"),
     )
 
     @field_validator("LLM_BASE_URL", mode="before")

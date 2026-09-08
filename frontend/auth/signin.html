@@ -38,7 +38,7 @@
   </div>
 
   <script type="module">
-    import { loadClerk, redirectIfAuthenticated, syncUserWithBackend } from '../assets/js/auth.js';
+    import { loadClerk, redirectIfAuthenticated, syncUserWithBackend, getSafeRedirectUrl } from '../assets/js/auth.js';
     import { showToast } from '../assets/js/ui.js';
 
     (async () => {
@@ -46,14 +46,14 @@
       if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
 
       const params = new URLSearchParams(window.location.search);
-      const redirectUrl = params.get('redirect_url');
+      const redirectUrl = getSafeRedirectUrl(params.get('redirect_url'), '../dashboard.html');
       const fallbackUrl = '../dashboard.html';
 
       const clerk = await loadClerk();
-      await redirectIfAuthenticated(redirectUrl || fallbackUrl);
+      await redirectIfAuthenticated(redirectUrl);
 
       clerk.mountSignIn(document.getElementById('clerk-sign-in'), {
-        afterSignInUrl: redirectUrl || fallbackUrl,
+        afterSignInUrl: redirectUrl,
         appearance: {
           elements: {
             rootBox: 'w-full',

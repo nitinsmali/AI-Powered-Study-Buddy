@@ -10,6 +10,19 @@ function resolveAppUrl(path, fallback = './') {
   } catch {
     return new URL(fallback, window.location.href).toString();
   }
+
+  export function getSafeRedirectUrl(value, fallback = './dashboard.html') {
+    const fallbackUrl = resolveAppUrl(fallback);
+    if (!value) return fallbackUrl;
+    try {
+      const candidate = new URL(decodeURIComponent(value), window.location.href);
+      return candidate.origin === window.location.origin
+        ? candidate.toString()
+        : fallbackUrl;
+    } catch {
+      return fallbackUrl;
+    }
+  }
 }
 
 const CLERK_PUBLISHABLE_KEY = window.__CLERK_PUBLISHABLE_KEY__
@@ -99,9 +112,7 @@ export async function redirectIfAuthenticated(dashboardUrl = './dashboard.html')
   await loadClerk();
   if (window.Clerk?.user) {
     const params = new URLSearchParams(window.location.search);
-    const redirectUrl = params.get('redirect_url');
-    const target = redirectUrl ? decodeURIComponent(redirectUrl) : resolveAppUrl(dashboardUrl);
-    window.location.href = target;
+    window.location.href = getSafeRedirectUrl(params.get('redirect_url'), dashboardUrl);
   }
 }
 

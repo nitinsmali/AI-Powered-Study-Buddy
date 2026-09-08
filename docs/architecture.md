@@ -228,7 +228,7 @@ Key derived properties:
 
 | Phase | Status | Content |
 |---|---|---|
-| **Phase 1** | ✅ Complete | Foundation: project structure, all models, API stubs, frontend shell |
-| **Phase 2** | 🔜 Next | Document processing pipeline: PDF/DOCX text extraction, async background jobs |
-| **Phase 3** | 🔜 Planned | AI-powered recommendations, conversation history persistence, topic tagging |
+| **Phase 1** | ✅ Complete | Foundation: project structure, models, API routes, and frontend shell |
+| **Phase 2** | ✅ Complete | Document processing pipeline: PDF/DOCX/TXT/Markdown extraction and background processing |
+| **Phase 3** | 🔜 Planned | Conversation history persistence and automatic topic tagging; recommendations currently use deterministic weak-topic rules |
 | **Phase 4** | 🔜 Planned | Advanced analytics charts, study streak gamification, export features |
